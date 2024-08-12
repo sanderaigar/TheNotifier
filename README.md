@@ -1,2 +1,2 @@
-# TheNotifier
-Notifications for all your needs
+# Example
+An example greeter plugin
