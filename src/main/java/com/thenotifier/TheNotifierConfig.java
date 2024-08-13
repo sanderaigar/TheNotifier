@@ -58,7 +58,7 @@ public interface TheNotifierConfig extends Config
 	)
 	default String getHealthSoundAlertText()
 	{
-		return "Pay attention to your health!";
+		return "HEALTH!";
 	}
 
 	@ConfigItem(
