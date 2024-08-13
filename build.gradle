@@ -16,6 +16,7 @@ dependencies {
 	compileOnly group: 'net.runelite', name:'client', version: runeLiteVersion
 
 	compileOnly 'org.projectlombok:lombok:1.18.30'
+	implementation group: 'net.sf.sociaal', name: 'freetts', version: '1.2.2'
 	annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
 	testImplementation 'junit:junit:4.12'
@@ -23,7 +24,7 @@ dependencies {
 	testImplementation group: 'net.runelite', name:'jshell', version: runeLiteVersion
 }
 
-group = 'com.example'
+group = 'com.thenotifier'
 version = '1.0-SNAPSHOT'
 
 tasks.withType(JavaCompile) {
