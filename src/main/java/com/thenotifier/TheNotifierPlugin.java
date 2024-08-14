@@ -2,13 +2,14 @@ package com.thenotifier;
 
 import com.google.inject.Provides;
 import javax.inject.Inject;
+
+import com.thenotifier.util.SpeechPlayer;
 import lombok.extern.slf4j.Slf4j;
 
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.Skill;
 
-import com.thenotifier.config.SoundPlayer;
 import net.runelite.api.events.GameTick;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -37,13 +38,13 @@ public class TheNotifierPlugin extends Plugin
 	private TheNotifierConfig config;
 
 	@Inject
-	private SoundPlayer soundPlayer;
-
-	@Inject
 	private TheNotifierOverlay hitpointOverlay;
 
 	@Inject
 	private OverlayManager overlayManager;
+
+	@Inject
+	private SpeechPlayer speechPlayer;
 
 	@Inject
 	private Notifier notifier;
@@ -52,6 +53,7 @@ public class TheNotifierPlugin extends Plugin
 	protected void startUp() throws Exception
 	{
 		overlayManager.add(hitpointOverlay);
+		speechPlayer.createSynthesizer();
 	}
 
 	@Override
@@ -68,7 +70,7 @@ public class TheNotifierPlugin extends Plugin
 
 		if (!config.disableHitpointNotifications()) {
 			if (shouldNotifyHitpoints && hitpointTotalBelowThreshold()) {
-				soundPlayer.tryLoadSpeech(config, config.getHealthSoundAlertText());
+				speechPlayer.speak(config, config.getHealthSoundAlertText());
 				notifier.notify("Your hitpoints are below " + config.getHitpointThreshold());
 				shouldNotifyHitpoints = false;
 			} else if (!hitpointTotalBelowThreshold()) {

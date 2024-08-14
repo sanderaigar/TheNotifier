@@ -21,7 +21,7 @@ public interface TheNotifierConfig extends Config
 			keyName = "getHitpointThreshold",
 			name = "Hitpoint Threshold",
 			description = "Set hitpoint threshold",
-			position = 1,
+			position = 2,
 			section = hitpointSettings
 	)
 	default int getHitpointThreshold() {
@@ -54,7 +54,9 @@ public interface TheNotifierConfig extends Config
 	@ConfigItem(
 			keyName = "healthSoundAlertText",
 			name = "Text-to-speech for sound alert",
-			description = "Text that gets played as speech when threshold is reached"
+			description = "Text that gets played as speech when threshold is reached",
+			position = 1,
+			section = hitpointSettings
 	)
 	default String getHealthSoundAlertText()
 	{
@@ -77,10 +79,10 @@ public interface TheNotifierConfig extends Config
 			max = 100
 	)
 	@ConfigItem(
-			keyName = "healthAletvolume",
+			keyName = "healthAlertvolume",
 			name = "Health (TTS)Audio volume",
 			description = "Speech volume (0-100)%.",
-			position = 1,
+			position = 2,
 			section = hitpointSettings
 	)
 	default int audioVolume()
@@ -90,8 +92,8 @@ public interface TheNotifierConfig extends Config
 
 	@ConfigItem(
 			keyName = "disableNotification",
-			name = "Disable Notification",
-			description = "Disable tray notifications",
+			name = "Disable Push Notification",
+			description = "Disable push notifications",
 			position = 4,
 			section = hitpointSettings
 	)
